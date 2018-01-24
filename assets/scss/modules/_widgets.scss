@@ -1,0 +1,15 @@
+/*----------------------
+   Widgets style
+-----------------------*/
+.widgets{
+    .widget{
+        margin-bottom: 1em;
+    }
+
+    .widgettitle{
+        margin: .5em 0;
+        font-size: ms(0);
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+}

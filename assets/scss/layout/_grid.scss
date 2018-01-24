@@ -1,0 +1,86 @@
+//*******************************************************
+// GRID FILE
+// A simple homemade Grid system
+//*******************************************************
+
+
+/*-----------------------
+    Config
+------------------------*/
+@import "neat/neat-helpers";
+$gutter: 3em;
+$max-width: 1200px;
+$desktop: new-breakpoint(min-width 980px);
+@import "neat";
+
+
+
+/*-----------------------
+    Global
+------------------------*/
+*{ box-sizing: border-box; }
+
+
+/*-----------------------
+    Container
+------------------------*/
+.l-container {
+    @include outer-container();
+    width: 80%;
+}
+
+
+/*-----------------------
+    Columns Desktop
+------------------------*/
+@include media($desktop) {
+    @for $i from 1 through 12 {
+        .l-col-#{$i} {
+            @include span-columns($i);
+        }
+    }
+}
+
+
+/*-------------------------------
+    Pushers
+--------------------------------*/
+@include media($desktop) {
+    @for $i from 1 through 10 {
+        .l-col-push-#{$i} {
+            @include shift($i);
+        }
+    }
+}
+
+
+/*-------------------------------
+    Padding up & down
+--------------------------------*/
+@for $i from 1 through 11 {
+    .l-ptop-#{$i}, .l-pad-#{$i}{
+        padding-top: #{$i}em;
+    }
+    .l-pbottom-#{$i}, .l-pad-#{$i}{
+        padding-bottom: #{$i}em;
+    }
+}
+
+
+/*-------------------------------
+    Padding up & down mobile
+--------------------------------*/
+@media screen and (max-width: 767px) {
+    @for $i from 1 through 11 {
+        .l-mptop-#{$i}, .l-mpad-#{$i}{
+            padding-top: #{$i}em;
+        }
+        .l-mpbottom-#{$i}, .l-mpad-#{$i}{
+            padding-bottom: #{$i}em;
+        }
+    }
+
+    .l-container {
+        width: 94%;
+    }
+}

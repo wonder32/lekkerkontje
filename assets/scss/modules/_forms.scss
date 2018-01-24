@@ -1,0 +1,22 @@
+/*----------------------
+    Forms
+-----------------------*/
+
+input,
+textarea {
+    padding: .5em;
+    margin-bottom: .5em;
+    display: block;
+    width: 100%;
+    box-shadow: none;
+    border: thin solid $light-gray;
+    &:focus{
+        outline: none;
+        border-color: $main-color;
+    }
+}
+
+input[type="submit"] {
+    margin-top: .85rem;
+    @extend %btn;
+}

@@ -1,0 +1,151 @@
+/*----------------------
+   Post content
+-----------------------*/
+.entry-content{
+    padding: 1.5em 0;
+
+    p {
+        margin: 0 0 1.5em;
+    }
+
+    blockquote {
+        margin: 0 0 1.5em 0.75em;
+        padding: 0 0 0 0.75em;
+        border-left: 3px solid $main-color;
+        font-style: italic;
+        color: $gray;
+    }
+
+    img {
+        margin: 0 0 1.5em 0;
+        max-width: 100%;
+        height: auto;
+    }
+
+    pre {
+        background: $light-gray;
+        padding: 1.5em;
+        margin: 0 0 1.5em;
+        overflow-x: scroll;
+    }
+
+    ul{
+        list-style: disc;
+        padding-left: 2em;
+    }
+
+}
+
+
+/*----------------------
+   Responsive image
+-----------------------*/
+.wp-post-image{
+    width: 100%;
+    height: auto;
+}
+
+/*----------------------
+   Sticky post
+-----------------------*/
+.sticky{
+    border-top: 2px solid $light-gray;
+	border-bottom: 2px solid $light-gray;
+}
+
+
+/*----------------------
+   Admin Editor
+-----------------------*/
+.wp-editor{
+    @extend .entry-content;
+    margin: 1.5em;
+}
+
+
+/*----------------------
+   Post Gallery style
+-----------------------*/
+.gallery {
+	margin-bottom: 1.5em;
+}
+
+.gallery-item {
+	display: inline-block;
+	text-align: center;
+	vertical-align: top;
+	width: 100%;
+
+    @for $i from 2 through 9 {
+        .gallery-columns-#{$i} {
+            max-width: 100% / $i;
+        }
+    }
+}
+
+.gallery-caption {
+	display: block;
+}
+
+
+/*----------------------
+   Post Caption style
+-----------------------*/
+.wp-caption {
+    background: #eee;
+    padding: 5px;
+
+    /* images inside wp-caption */
+    img {
+        margin-bottom: 0;
+        width: 100%;
+        height: auto;
+    }
+
+    p.wp-caption-text {
+        font-size: 0.85em;
+        margin: 4px 0 7px;
+        text-align: center;
+    }
+
+}
+
+
+/*----------------------
+   Table Style
+-----------------------*/
+.entry-content{
+    table {
+        width: 100%;
+        border: 1px solid $gray;
+        margin-bottom: 1.5em;
+    }
+
+    td {
+        padding: 7px;
+    }
+}
+
+
+
+/* at this larger size, we can start to align images */
+@media only screen and (min-width: 481px) {
+
+    .alignleft, img.alignleft {
+        margin-right: 1.5em;
+        display: inline;
+        float: left;
+    }
+    .alignright, img.alignright {
+        margin-left: 1.5em;
+        display: inline;
+        float: right;
+    }
+    .aligncenter, img.aligncenter {
+        margin-right: auto;
+        margin-left: auto;
+        display: block;
+        clear: both;
+    }
+
+}

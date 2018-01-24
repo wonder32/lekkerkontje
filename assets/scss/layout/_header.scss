@@ -1,0 +1,166 @@
+/*----------------------
+   Setup
+-----------------------*/
+$header-height: 60px;
+$logo-height: 40px;
+$break-point: 768px;
+$margin-logo: ($header-height - $logo-height)/2;
+
+
+/*----------------------
+   Header wrapper
+-----------------------*/
+.header {
+    background-color: $white;
+    box-shadow: 0 0 3px 0 rgba(0,0,0,0.22);
+}
+
+
+/*----------------------
+   Logo
+-----------------------*/
+.site-logo img {
+    float: left;
+    width: auto;
+    height: $logo-height;
+    margin: $margin-logo 0;
+}
+
+
+/*----------------------
+   Mobile menu button
+-----------------------*/
+.menu-btn{
+    float: right;
+    margin-top: 12px;
+    @media only screen and (min-width: $break-point) {
+        display: none !important;
+    }
+}
+
+
+/*-----------------------
+     Mobile menu
+-------------------------*/
+.site-nav {
+    max-height: 0;
+    width: 100%;
+    transition: max-height .2s ease-in-out;
+    overflow: hidden;
+    background: white;
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+    }
+    li > a {
+        color: $gray;
+        font-weight: bold;
+        display: block;
+        padding: 0.75em;
+        white-space: nowrap;
+        &:hover {
+            text-decoration: none;
+            color: $main-color;
+        }
+    }
+    .no-js &,
+    .is-menu-on & {
+        max-height: 300px;
+    }
+}
+
+
+/*-----------------------------
+   Navigation desktop layout
+------------------------------*/
+@media only screen and (min-width: $break-point) {
+    .site-nav {
+        max-height: none;
+        width: auto;
+        float: right;
+        overflow: visible;
+
+        li {
+            display: inline-block;
+            text-align: left;
+            position: relative;
+        }
+        li a {
+            padding: 0 1em;
+            line-height: $header-height;
+        }
+        li.current-menu-item > a,
+        li.current_page_item > a,
+        li.current_page_ancestor > a,
+        .current-menu-ancestor > a {
+            color: $main-color;
+        }
+    }
+}
+a.site-logo img {
+    width: 67%;
+}
+
+/*----------------------
+   Sub menu
+-----------------------*/
+@media only screen and (min-width: $break-point) {
+    .site-nav .sub-menu {
+        position: absolute;
+        z-index: 100;
+        right: 0;
+        padding: 0;
+        background: $light-gray;
+    }
+    a.site-logo img {
+        width: auto;
+    }
+}
+
+
+/*----------------------
+   Sub menu
+-----------------------*/
+@media only screen and (min-width: $break-point) {
+
+    .site-nav .menu-item-has-children {
+        .sub-menu {
+            @include unvisible();
+            z-index: 100;
+            transition: all 0.3s ease-in-out;
+        }
+        &:hover .sub-menu {
+            @include visible();
+        }
+    }
+}
+
+/*----------------------
+    pictures outline
+ ----------------------*/
+
+.lekker-galery {
+
+    overflow: hidden;
+
+    .image-block {
+        position: relative;
+        float: left;
+        margin: 5px;
+        height: 138px;
+
+    }
+}
+
+@media only screen and (min-width: $break-point) {
+
+    .lekker-galery {
+
+        .image-block {
+            height: 160px;
+        }
+    }
+}

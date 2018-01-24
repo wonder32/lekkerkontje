@@ -1,0 +1,36 @@
+/*
+ * Comment box
+ */
+.comment{
+    list-style: none;
+    > .comment-body{
+        border: 1px solid $light-gray;
+        background: $white;
+        padding: 1em;
+        margin: 2em 0;
+        > .reply{
+            text-align: right;
+        }
+    }
+}
+
+/*
+ * Comment response
+ */
+.comment-respond input.submit{
+    @extend %btn;
+}
+
+
+
+/*
+ * from underscores.me starter theme
+ * TODO : adapt & make minimal design
+ */
+.comment-content a {
+	word-wrap: break-word;
+}
+
+.bypostauthor {
+	display: block;
+}

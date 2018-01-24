@@ -1,0 +1,36 @@
+//************************************************************
+// UTILS FILE
+// Here we put the placeholders, helpers, mixins & functions
+//************************************************************
+
+//-----------------------
+// Placeholders
+//-----------------------
+%clearfix{
+    @include clearfix;
+}
+
+
+//-----------------------
+// Mixins
+//-----------------------
+@mixin visible() {
+    visibility: visible;
+    opacity: 1;
+}
+@mixin unvisible() {
+    visibility: hidden;
+    opacity: 0;
+}
+
+
+//-----------------------
+// Helpers
+//-----------------------
+.clearfix{
+    @extend %clearfix;
+}
+
+.text-center{
+    text-align: center;
+}
