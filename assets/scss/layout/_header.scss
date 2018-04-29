@@ -164,3 +164,122 @@ a.site-logo img {
         }
     }
 }
+
+/*------------------------
+ *  Image
+ *-----------------------*/
+.image-content {
+
+  max-width:500px;
+  margin: 0 auto;
+  padding: 0;
+
+  .attachment-block {
+    position: relative;
+    position: relative;
+    width: 100% !important;
+    height: 500px;
+    max-height: 800px;
+    margin: 0 auto !important;
+    overflow: hidden;
+
+    &.orientation-tall {
+      max-width: 500px;
+    }
+
+    &.orientation-wide {
+
+    }
+    a img.wide {
+      height: auto !important;
+    }
+    a img.tall {
+      width: auto !important;
+    }
+    ​
+    #attachment-rating.rating-red,
+    .attachment-controls {
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.6);
+      text-align: center;
+      color: #fff;
+      font-weight: 700;
+      width: 100%;
+      font-size: 3em;
+    }
+
+    #attachment-rating.rating-red {
+      bottom: 10%;
+      font-size: 2em;
+      z-index: +1;
+    }
+
+    #attachment-rating.rating-red span[class^="rating-star-"] {
+      font-size: 0.5em;
+    }
+
+    #attachment-rating.rating-red span[class^="rating-star-"]:before {
+      content: "\2605";
+      /* position: absolute; */
+      position: relative;
+      font-size: 2em;
+      left: 3%;
+      color: red;
+      z-index: -1;
+    }
+
+    .attachment-controls {
+      bottom: 5px;
+      unicode-bidi: bidi-override;
+      direction: rtl;
+
+      .attachment-previous a span,
+      .attachment-next a span {
+        vertical-align: middle;
+        margin-bottom: 0.4em;
+        font-size: 1em;
+      }
+      .attachment-previous {
+        float: right;
+        padding-right: 20px;
+      }
+      .attachment-next {
+        float: left;
+        padding-left: 40px;
+      }
+      a, a:hover {
+        color: #fff;
+        font-weight: 700;
+      }
+
+    }
+  }
+
+  table.rating {
+    width: 60%;
+    margin: 0 auto;
+    border: 0;
+  }
+}
+.attachment-block .attachment-controls div[class^="attachment-star"]:hover:before {
+    content: "\2605";
+    position: absolute;
+}
+
+.attachment-controls > div[class^="attachment-star"]:hover:before,
+.attachment-controls > div[class^="attachment-star"]:hover ~ div[class^="attachment-star"]:before {
+    content: "\2605";
+    position: absolute;
+    color: gold;
+}
+
+.attachment-block .attachment-controls div.rated-red:before {
+    content: "\2605";
+    position: absolute;
+    color: red;
+}
+.attachment-block .attachment-controls div[class^="attachment-"] {
+    display: inline;
+    margin: 0px;
+}
+

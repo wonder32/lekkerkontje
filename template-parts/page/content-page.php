@@ -10,11 +10,16 @@
 	<?php the_post_thumbnail('medium'); ?>
 
 	<!-- Post header -->
-	<header class="entry-header">
-		<?php the_title( '<h2 class="entry-title">', '</h2>' ); ?>
-        <aside class="entry-meta">
-            <?php _e('Posted', 'monsieurpress'); ?> <?php the_date(); ?> <?php _e('by', 'monsieurpress'); ?> <?php the_author(); ?>
-        </aside>
+	<header class="entry-header l-container">
+            <div class="l-col-6" id="image-preview">&nbsp;
+            </div>
+        <aside class="entry-meta l-col-6">
+	            <?php the_title( '<h2 class="entry-title">', '</h2>' ); ?>
+	            <?php
+	            if ( function_exists('yoast_breadcrumb') && !is_front_page()) {
+		            yoast_breadcrumb('<p id="breadcrumbs">','</p>');
+	            }
+	            ?></aside>
 	</header>
 
 	<!-- Post excerpt -->

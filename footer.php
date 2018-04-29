@@ -4,7 +4,8 @@
                     <?php wp_nav_menu( array(
                         'theme_location' => 'footer-links',
                         'menu_class' => 'footer-links',
-                        'container' => false
+                        'container' => false,
+                        'link_after' => ' |'
                     ) ); ?>
                     <p>&copy; <?php echo date('Y'); ?> <?php bloginfo( 'name' ); ?></p>
                 </footer>
@@ -12,5 +13,6 @@
 
 		</div>
 		<?php wp_footer(); ?>
+        <div id="cn-wrapper"></div>
 	</body>
 </html>

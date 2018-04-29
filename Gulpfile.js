@@ -6,6 +6,7 @@ var autoprefixer = require('gulp-autoprefixer');
 var imagemin = require('gulp-imagemin');
 var pngquant = require('imagemin-pngquant');
 var uglify = require('gulp-uglify');
+var concat = require('gulp-concat');
 var livereload = require('gulp-livereload');
 var wpPot = require('gulp-wp-pot');
 var sort = require('gulp-sort');
@@ -71,9 +72,13 @@ gulp.task('images', function() {
  * - Launch the task before production
  -------------------------------------------*/
 gulp.task('compress', function() {
-    gulp.src('assets/javascript/src/*.js')
+    gulp.src('assets/javascript/src/**/*.js')
+        .pipe(sourcemaps.init())
+        .pipe(plumber())
+        .pipe(concat('scripts.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('javascript/dist/'));
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest('assets/javascript/dist/'));
 });
 
 

@@ -30,109 +30,9 @@ body.attachment {
     }
 }
 
-.attachment-block {
-    position: relative;
-    position: relative;
-    width: 100% !important;
-    /*height: 100%!important;*/
-    max-height: 800px;
-    background: #444 !important;
-    margin: 0 auto !important;
-    overflow: hidden;
-
-    &.orientation-tall {
-        max-width: 500px;
-    }
-
-    &.orientation-wide {
-
-    }
-    a img.wide {
-            height: auto !important;
-        }
-    a img.tall {
-        width: auto!important;
-    }​
-
-
-    #attachment-rating.rating-red,
-    .attachment-controls {
-        position: absolute;
-        background-color: rgba(0, 0, 0, 0.6);
-        text-align: center;
-        color: #fff;
-        font-weight: 700;
-        width: 100%;
-        font-size: 3em;
-    }
-
-    #attachment-rating.rating-red {
-        bottom: 10%;
-        font-size: 2em;
-        z-index: +1;
-    }
-
-    #attachment-rating.rating-red span[class^="rating-star-"] {
-        font-size: 0.5em;
-    }
-
-    #attachment-rating.rating-red span[class^="rating-star-"]:before {
-        content: "\2605";
-        /* position: absolute; */
-        position: relative;
-        font-size: 2em;
-        left: 3%;
-        color: red;
-        z-index: -1;
-    }
-
-    .attachment-controls {
-        bottom: 5px;
-        unicode-bidi: bidi-override;
-        direction: rtl;
-
-        a, a:hover {
-            color: #fff;
-            font-weight: 700;
-        }
-
-    }
-
-}
 
 
 
-.attachment-block
-
-.attachment-block
-
-.attachment-block
-
-.attachment-block
-
-.attachment-block .attachment-controls
-
-.attachment-block .attachment-controls div[class^="attachment-star"]:hover:before {
-    content: "\2605";
-    position: absolute;
-}
-
-.attachment-controls > div[class^="attachment-star"]:hover:before,
-.attachment-controls > div[class^="attachment-star"]:hover ~ div[class^="attachment-star"]:before {
-    content: "\2605";
-    position: absolute;
-    color: gold;
-}
-
-.attachment-block .attachment-controls div.rated-red:before {
-    content: "\2605";
-    position: absolute;
-    color: red;
-}
-.attachment-block .attachment-controls div[class^="attachment-"] {
-    display: inline;
-    margin: 0px;
-}
 
 @media screen and (min-width: 48em) {
     body:not(.has-sidebar):not(.page-one-column) .page-header, body.has-sidebar.error404 #primary .page-header, body.page-two-column:not(.archive) #primary .entry-header, body.page-two-column.archive:not(.has-sidebar) #primary .page-header {
@@ -151,14 +51,26 @@ body.attachment {
 
     /* attachment */
     .attachment-block .attachment-controls {
-        font-size: 2em;
+        font-size: 1em;
     }
 }
 
 @media screen and (max-width: 24em) {
 
     /* attachment */
-    .attachment-block .attachment-controls {
-        font-size: 1.5em;
+    .attachment-block .attachment-controls div {
+        font-size: 0.7em;
+
+    }
+    .image-content {
+        table.rating {
+            width: 100%!important;
+        }
+        .attachment-controls {
+            div a span {
+                vertical-align: bottom!important;
+                margin-bottom: 0.3em!important;
+            }
+        }
     }
 }

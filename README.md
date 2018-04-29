@@ -1,22 +1,18 @@
-# MonsieurPress
-Hello, I'm MonsieurPress, a super cool, lightweight & simple WordPress starter theme for developpers
-
-## How am I ?
-Hello developer ! I'm a WordPress starter theme, I'm not all naked and actualy the webpage you are in is me ! I'm very minimal & easy to understand, I use modern workflow like gulp, sass, and love. I'm not meant for being used as a parent theme, just adopt me and hack me ! [Check my website](http://www.monsieurpress.com/ "MonsieurPress") to see how I look without modification.
+# Lekker kontje
+Dit is het thema achter lekker-kontje.nl
 
 ## Requirements
-- A working WordPress installation
-- Npm (packaged in node)
+- Wordpress
+- Grafity forms
+- meta box
 
 ## How to use me ?
 Go to your wordpress theme folder with your terminal, and type the following commands :
 
-	$ git clone https://github.com/dadipaq/monsieurpress.git [yourthemename]
+	$ git clone https://github.com/wonder32/lekkerkontje.git [yourthemename]
     $ cd [yourthemename]
 	$ npm install
 	$ gulp
-
-You are now ready for happy coding !
 
 ## Gulp tasks
 I have some embeded gulp tasks that can be use for you workflow :

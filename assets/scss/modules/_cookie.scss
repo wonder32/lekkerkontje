@@ -1,0 +1,44 @@
+#cookie-notice {
+  display: none;
+  position: fixed;
+  min-width: 100%;
+  height: auto;
+  z-index: 100000;
+  font-size: 13px;
+  line-height: 20px;
+  left: 0;
+  text-align: center
+}
+
+.cookie-notice-container {
+  padding: 10px;
+  text-align: center
+}
+
+.cn-top {
+  top: 0
+}
+
+#cookie-notice .button {
+  margin-left: 10px
+}
+
+#cookie-notice .button.wp-default {
+  font-family: sans-serif;
+  line-height: 18px;
+  padding: 2px 12px;
+  background: linear-gradient(to bottom, #FEFEFE, #F4F4F4) repeat scroll 0 0 #F3F3F3;
+  border-color: #BBB;
+  color: #333;
+  text-shadow: 0 1px 0 #FFF;
+  -moz-box-sizing: border-box;
+  border-radius: 3px 3px 3px 3px;
+  border-style: solid;
+  border-width: 1px;
+  display: inline-block;
+  font-size: 12px;
+  font-style: normal;
+  text-decoration: none;
+  white-space: nowrap;
+  outline: none
+}

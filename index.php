@@ -6,10 +6,13 @@
         <!-- The content -->
         <?php
         while (have_posts()) : the_post();
-            get_template_part( 'template-parts/content', 'loop' );
+            if (is_search()) {
+	            get_template_part( 'template-parts/search', 'loop' );
+            } else {
+	            get_template_part( 'template-parts/content', 'loop' );
+            }
         endwhile;
         ?>
-
         <!-- Pagination -->
         <div class="pagination">
             <?php echo paginate_links(); ?>

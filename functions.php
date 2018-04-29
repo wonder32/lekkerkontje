@@ -76,7 +76,7 @@ add_action( 'widgets_init', 'theme_sidebars' );
 function theme_add_editor_styles() {
     add_editor_style( get_stylesheet_uri() );
 }
-add_action( 'init', 'theme_add_editor_styles' );
+//add_action( 'init', 'theme_add_editor_styles' );
 
 
 
@@ -87,8 +87,8 @@ function front_assets_load() {
     if (is_admin()) return;
 
     /* Enqueue theme script & style */
-    wp_enqueue_script( 'monsieurpress-js', get_template_directory_uri() . '/javascript/dist/scripts.js#asyncload', array('jquery'), '', true);
-
+    wp_enqueue_script( 'monsieurpress-js', get_template_directory_uri() . '/assets/javascript/dist/scripts.js#asyncload', array('jquery'), '', true);
+	wp_enqueue_style('dashicons');
     /* Enqueue comment-reply script if needed */
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -102,6 +102,19 @@ function prefix_add_footer_styles() {
 };
 add_action( 'get_footer', 'prefix_add_footer_styles' );
 
+
+/********************
+ *  No xml
+ *********************/
+
+function remove_wordpress_generator() {
+	return '';
+}
+add_filter('the_generator', 'remove_wordpress_generator', 1);
+
+/**
+ * Remove jQuery migrate
+ */
 
 add_filter( 'wp_default_scripts', 'dequeue_jquery_migrate' );
 
@@ -147,16 +160,16 @@ function puddinq_robots_txt_function( $robots_txt = '', $public = '' ) {
 add_action('wp_head', 'pu_prerender');
 function pu_prerender() {
 
-    global $prevnext, $post;
+    global $prevnext, $post, $lekkerKontje;
 
     if (!is_admin() && is_attachment()) {
-
-        $prevnext = get_prevnext($post);
-        if (isset($prevnext['next'])) {
-            echo '<link rel="prerender" href="' . $prevnext['next'] . '#entry-title">';
+		$next = $lekkerKontje->pu_adjacent_image_link(false);
+        if (!empty($next)) {
+            echo '<link rel="prerender" href="' . $next . '#entry-title">' . PHP_EOL;
         }
-        if (isset($prevnext['previous'])) {
-            echo '<link rel="prerender" href="' . $prevnext['previous'] . '#entry-title">';
+        $previous = $lekkerKontje->pu_adjacent_image_link(true);
+        if (!empty($previous)) {
+            echo '<link rel="prerender" href="' . $previous . '#entry-title">' . PHP_EOL;
         }
     }
 }
@@ -180,3 +193,113 @@ function lekker_kontje_title( $title, $id = null ) {
     return $title;
 }
 add_filter( 'the_title', 'lekker_kontje_title', 10, 2 );
+
+// gravity hide label
+add_filter( 'gform_enable_field_label_visibility_settings', '__return_true' );
+
+
+// check if metabox is there ( no white screen )
+
+if ( ! function_exists( 'rwmb_get_value' ) ) {
+	function rwmb_get_value( $key, $args = '', $post_id = null ) {
+		return false;
+	}
+}
+
+/* change permalink */
+
+add_filter('wp_seo_get_bc_ancestors', 'lekker_change_kontje');
+
+function lekker_change_kontje($links) {
+	
+	if ($links[0] === 71) {
+		$links[0] = 47;
+	}
+	return $links;
+}
+
+
+
+/* Yoast schema weg */
+
+add_filter('wpseo_json_ld_output', 'lekker_yoast_weg', 10, 2);
+
+function lekker_yoast_weg($data, $context) {
+
+	if ($context == 'person') {
+		return;
+	}
+
+	$data = array(
+		'@context' => 'https://schema.org',
+		'@type' => 'WebSite',
+		'url' => 'https://lekker-kontje.nl/',
+		'name' => 'Lekker-kontje.nl',
+	);
+
+	if (is_front_page()) {
+		$data['potentialAction'] = array(
+			'@type' => 'SearchAction',
+			'target' => 'https://lekker-kontje.nl/?s={s}',
+			'query-input' => 'required name=s',
+		);
+	}
+
+	
+
+	return $data;
+}
+
+/* overwrite wordpress default search results*/
+
+add_shortcode('lekker-search', 'lekker_search');
+
+function lekker_search() {
+	$form = '<form role="search" method="get" class="search-form" action="' . esc_url( home_url( '/' ) ) . '">
+				<label>
+					<span class="screen-reader-text">' . _x( 'Search for:', 'label' ) . '</span>
+					<input type="search" class="search-field" placeholder="' . esc_attr_x( 'Search &hellip;', 'placeholder' ) . '" value="' . get_search_query() . '" name="s" id="search-field"/>
+				</label>
+				<input type="submit" class="search-submit" value="'. esc_attr_x( 'Search', 'submit button' ) .'" />
+			</form>';
+	return $form;
+}
+
+function rc_add_cpts_to_search($query) {
+
+
+	if ( $query->is_search ) {
+		$query->set( 'post_type', array( 'post', 'attachment' ) );
+		$query->set( 'post_status', array( 'publish', 'inherit' ) );
+//		$meta_query_args = array(
+//			'relation' => 'AND', /* <-- here */
+//			array(
+//				'key' => 'lka_image_tag',
+//				'value' => $query->query_vars['s'] = '',
+//				'compare' => 'LIKE',
+//			),
+////			array(
+////				'key' => 'lka_image_tag',
+////				'value'   => array(''),
+////				'compare' => 'NOT IN'
+////			),
+//		);
+//		$query->set('meta_query', $meta_query_args);
+
+	}
+
+	return $query;
+}
+add_action( 'pre_get_posts', 'rc_add_cpts_to_search' );
+
+
+
+add_action( 'wpseo_opengraph', 'my_gv_wpseo_opengraph_image', 10, 1);
+function my_gv_wpseo_opengraph_image( $img ) {
+
+	//specify here a default image
+	$img = 'https://dev.lekker-kontje.nl/wp-content/uploads/2018/02/lekker-kontje-vierkant.jpg';
+
+	$GLOBALS['wpseo_og']->image_output( $img );
+}
+
