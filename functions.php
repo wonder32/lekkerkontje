@@ -184,8 +184,8 @@ function lekker_kontje_title( $title, $id = null ) {
 
     global $wp_query;
 
-    $group = $wp_query->get('img_group');
-    $tag = $wp_query->get('img_tag');
+    $group = $wp_query->get('lka_image_group');
+    $tag = $wp_query->get('lka_img_tag');
 
     $title .= !empty($group) ? ' - '. $group : '';
     $title .= !empty($tag) ? ' - '.$tag : '';

@@ -61,40 +61,50 @@ global $lekkerKontje;
                 </div>
             </div>
         </div>
-        <div class="l-col-6">
+        <div class="image-decription l-col-6">
+
+
 	        <?php the_title( '<h2 class="entry-title" id="entry-title">', '</h2>' ); ?>
-
-            <ul>
-                <li><?= $lekkerKontje->getOrientation(); ?></li>
-                <li><?= $lekkerKontje->getGroup(); ?></li>
-                <li><?= $lekkerKontje->getTag(); ?></li>
-                <li><?= $lekkerKontje->getEmail(); ?></li>
-                <li><?php
-		            $thumb_src = wp_get_attachment_image_src( get_the_ID(), 'thumbnail', false );
-		            ?>
-
-                    <img src="<?= $thumb_src[0]; ?>"
-                </li>
-            </ul>
-
-
 
             <?php
             $rating = $lekkerKontje->getRating();
-            echo '<table class="rating"><thead><tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr></thead>';
-            echo '<tbody><tr>';
+            echo '<table class="rating">';
+            echo '<tbody>';
 
             if (isset($rating)) {
 	            foreach ( $rating as $rate => $val ) {
-		            echo "<td id='rate-{$rate}'>{$val}</td>";
+		            echo "<tr><th>";
+		            for ($y = 1; $y <= $rate; $y++) {
+			            echo '&#9734;';
+		            }
+		            echo "</th><td id='rate-{$rate}'>{$val}</td></tr>";
 	            }
             } else {
 	            for ($x = 1; $x < 6; $x++) {
-		            echo "<td id='rate-{$x}'>0</td>";
+		            echo "<tr><th>";
+		            for ($z = 1; $z <= $x; $z++) {
+			            echo '&#9734;';
+		            }
+		            echo "</th><td id='rate-{$x}'>0</td>";
 	            }
             }
-            echo '<tr></tbody></table>';
+            echo '</tbody></table>';
             ?>
+            <div class=" l-col-6">
+	            <?php
+	            $thumb_src = wp_get_attachment_image_src( get_the_ID(), 'thumbnail', false );
+	            ?>
+                <img src="<?= $thumb_src[0]; ?>">
+            </div>
+            <div class=" l-col-6">
+                <ul class="image-info-block">
+                    <li><?= $lekkerKontje->getOrientation(); ?></li>
+                    <li><?= $lekkerKontje->getGroup(); ?></li>
+                    <li><?= $lekkerKontje->getTag(); ?></li>
+                    <li><?= $lekkerKontje->getEmail(); ?></li>
+                </ul>
+            </div>
+	        <?= $lekkerKontje->getDescription(); ?>
         </div>
 
 	</div>
