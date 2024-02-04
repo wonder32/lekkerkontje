@@ -261,6 +261,57 @@ a.site-logo img {
     border: 0;
   }
 }
+
+.image-decription.l-col-6 {
+  border: 1.5px solid #000;
+  padding: 13px;
+  height:500px;
+  border-radius: 14px;
+  overflow: hidden;
+
+  h1#entry-title {
+    font-size: 2em;
+    margin-top: 0;
+    margin-bottom: 0.3em;
+  }
+
+  div.entry-meta {
+    overflow: auto;
+
+    .l-col-6 {
+      width: 48%;
+      display: inline-block;
+    }
+
+    ul.image-info-block, img {
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  div.entry-description h2 {
+    font-size: 1.4em;
+    margin-top: 0;
+    margin-bottom: 0.3em;
+  }
+
+  table.rating {
+    border-spacing:0;
+    font-size: 0.7em;
+    th, td {
+      text-align: left;
+      font-size: 1.6em;
+      width:49%;
+      padding: 0 0 0 14px;
+    }
+  }
+
+  ul.image-info-block {
+    list-style: none;
+
+  }
+}
+
 .attachment-block .attachment-controls div[class^="attachment-star"]:hover:before {
     content: "\2605";
     position: absolute;
@@ -283,25 +334,35 @@ a.site-logo img {
     margin: 0px;
 }
 
-.image-decription.l-col-6 {
-  border: 1.5px solid #000;
-  padding: 13px;
-  height:500px;
-  border-radius: 14px;
-  overflow: hidden;
+html, body.home {
+  background-image: url(/wp-content/themes/lekker-kontje/images/beach-babe.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center bottom;
+  color: #fff;
+  height: 100%;
 
-  table.rating {
-    border-spacing:0;
-    th, td {
-      text-align: left;
-      font-size: 1.6em;
-      width:49%;
-      padding: 0 0 0 14px;
-    }
+  header.entry-header.l-container {
+    padding-top: 10%;
   }
 
-  ul.image-info-block {
-    list-style: none;
+  h2.entry-title {
+    float: right;
+  }
 
+  div#site-container {
+    height: 100%;
+  }
+
+  a:active, a:visited, a {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+}
+
+@media only screen and (max-width: $break-point) {
+  html, body.home {
+    background-position: 25% bottom;
+    background-size: initial;
   }
 }

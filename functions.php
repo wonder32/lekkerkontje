@@ -293,13 +293,43 @@ function rc_add_cpts_to_search($query) {
 add_action( 'pre_get_posts', 'rc_add_cpts_to_search' );
 
 
-
+/**
+ * yoast image
+ */
 add_action( 'wpseo_opengraph', 'my_gv_wpseo_opengraph_image', 10, 1);
 function my_gv_wpseo_opengraph_image( $img ) {
 
-	//specify here a default image
-	$img = 'https://dev.lekker-kontje.nl/wp-content/uploads/2018/02/lekker-kontje-vierkant.jpg';
+	if (!is_attachment()) {
+		//specify here a default image
+		$img = 'https://lekker-kontje.nl/wp-content/uploads/2018/02/lekker-kontje-vierkant.jpg';
 
-	$GLOBALS['wpseo_og']->image_output( $img );
+		$GLOBALS['wpseo_og']->image_output( $img );
+	}
 }
 
+// description
+
+add_filter( 'wpseo_opengraph_desc', 'change_desc' );
+
+function change_desc( $desc ) {
+
+	// This article is actually a landing page for an eBook
+	if( is_attachment() ) {
+		global $lekkerKontje;
+		$desc = $lekkerKontje->getDescription();
+	}
+
+	return $desc;
+}
+
+add_action('wp_head', 'lekker_meta_description');
+
+function lekker_meta_description() {
+
+	$description = change_desc('');
+
+	if (!empty($description)) {
+		echo '<meta name="description" content="' . $description . '" />';
+	}
+
+}

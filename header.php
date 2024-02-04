@@ -25,6 +25,7 @@
 <body <?php body_class(); ?>>
 
     <div id="site-container" class="site-container">
+	    <?php if (!is_front_page()) : ?>
         <header id="site-header" class="l-header header">
             <div class="l-container">
                 <div class="l-col-12">
@@ -49,5 +50,6 @@
 
             </div>
         </header>
+        <?php endif; ?>
         <div class="site-content">
 
